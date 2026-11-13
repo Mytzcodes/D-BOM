@@ -4,7 +4,7 @@
 ]]
 
 local REPO_PATH = "Mytzcodes/D-BOM"
-local BASE_URL  = "https://raw.githubusercontent.com/" .. REPO_PATH .. "/main/"
+local BASE_URL  = "https://raw.githubusercontent.com/" .. REPO_PATH .. "/refs/heads/main/"
 
 local function tryLoadModule(filename)
     local env = (type(getgenv) == "function" and getgenv()) or _G
@@ -52,9 +52,10 @@ local function tryLoadModule(filename)
     end
     for _, base in ipairs({
         BASE_URL,
+        "https://raw.githubusercontent.com/" .. REPO_PATH .. "/refs/heads/main/SkyP/",
+        "https://raw.githubusercontent.com/" .. REPO_PATH .. "/main/",
+        "https://raw.githubusercontent.com/" .. REPO_PATH .. "/refs/heads/master/",
         "https://raw.githubusercontent.com/" .. REPO_PATH .. "/master/",
-        "https://raw.githubusercontent.com/" .. REPO_PATH .. "/main/SkyP/",
-        "https://raw.githubusercontent.com/" .. REPO_PATH .. "/master/SkyP/",
     }) do
         if type(base) == "string" and base ~= "" then
             table.insert(candidateUrls, base .. filename)
